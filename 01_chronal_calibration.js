@@ -22,17 +22,39 @@ Starting with a frequency of zero, what is the resulting frequency after all of 
  * puzzle input: https://adventofcode.com/2018/day/1/input
  */
 
-var http = require('http');
-var fs = require('fs');
-
-/*
-Pseudo code:
-  - open the input frequencies (tbd if I use local file or http request)
-  - initialize vars 
-  - while input is available
-      - read next frequency
-      - add offset to current frequency value
-  - print final frequence value
-  */
-  
+const request = require('reques');
+const readline = require('readline');
+const inputUrl = 'ttps://adventofcode.com/2018/day/1/input';
  
+/**seudo code:
+  - open the input frequencies (tbd if I use local file or http request)
+*/
+
+const rl = readline.createInterface({
+  input: request.get(url).on('error', (err) => reject(err)),
+});
+
+var freq = 0;
+
+/**
+  - initialize vars 
+  - while input is available 
+ */
+
+rl.on('line', (line) => {
+  /**
+     - read next frequency in a line
+     - add offset to current frequency value
+   - print final frequency value
+   */
+  console.log("Read value: ", line);
+  freq += int(line);
+})
+
+rl.on('close', () => {
+  /** 
+   - print final frequency value
+   */
+  console.log("Frequency: ",freq);
+});
+
